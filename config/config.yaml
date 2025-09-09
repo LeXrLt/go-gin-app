@@ -1,2 +1,0 @@
-database:
-  source: "lele:qqqqqq12@tcp(192.168.2.115:3306)/go_gin_app?parseTime=true"
