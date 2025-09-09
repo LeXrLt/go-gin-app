@@ -8,6 +8,7 @@ type Config struct {
 	Database struct {
 		Source string `mapstructure:"source"`
 	} `mapstructure:"database"`
+	JWTSecret string `mapstructure:"jwt_secret"`
 }
 
 var Cfg *Config

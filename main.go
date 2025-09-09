@@ -4,6 +4,7 @@ import (
 	"go-gin-app/config"
 	"go-gin-app/db"
 	"go-gin-app/handlers"
+	"go-gin-app/middleware"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -22,6 +23,12 @@ func main() {
 
 	r.POST("/register", handlers.Register)
 	r.POST("/login", handlers.Login)
+
+	authRequired := r.Group("/")
+	authRequired.Use(middleware.AuthMiddleware())
+	{
+		authRequired.GET("/profile", handlers.GetProfile)
+	}
 
 	r.Run()
 }
