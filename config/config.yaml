@@ -1,0 +1,2 @@
+database:
+  source: "lele:qqqqqq12@tcp(127.0.0.1:3306)/test_db?parseTime=true"

@@ -1,15 +1,27 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
+	"go-gin-app/config"
+	"go-gin-app/db"
+	"go-gin-app/handlers"
+	"log"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-    r := gin.Default()
-    r.GET("/ping", func(c *gin.Context) {
-        c.JSON(200, gin.H{
-            "message": "pong",
-        })
-    })
-    r.Run() // 默认监听 0.0.0.0:8080
+	if err := config.LoadConfig(); err != nil {
+		log.Fatalf("Failed to load config: %v", err)
+	}
+
+	if err := db.InitDB(); err != nil {
+		log.Fatalf("Failed to connect to database: %v", err)
+	}
+
+	r := gin.Default()
+
+	r.POST("/register", handlers.Register)
+	r.POST("/login", handlers.Login)
+
+	r.Run()
 }
