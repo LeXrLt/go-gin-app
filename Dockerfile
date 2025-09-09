@@ -1,5 +1,5 @@
 # 使用官方 Go 镜像（基于 Debian）
-FROM golang:1.21
+FROM golang:1.24
 
 # 设置工作目录
 WORKDIR /app
@@ -14,5 +14,5 @@ RUN go mod download
 EXPOSE 8080
 
 # 运行应用
-CMD ["go", "run", "main.go"]
-# CMD ["tail", "-f", "/dev/null"]
+# CMD ["go", "run", "main.go"]
+CMD ["tail", "-f", "/dev/null"]
