@@ -8,7 +8,8 @@ type Config struct {
 	Database struct {
 		Source string `mapstructure:"source"`
 	} `mapstructure:"database"`
-	JWTSecret string `mapstructure:"jwt_secret"`
+	JWTSecret          string `mapstructure:"jwt_secret"`
+	PromptFissionCount int    `mapstructure:"prompt_fission_count"`
 }
 
 var Cfg *Config
