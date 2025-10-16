@@ -21,10 +21,10 @@ func UploadDistillationData(c *gin.Context) {
 		return
 	}
 
-	data.UserID = int(userID.(float64))
+	data.UserID = int(userID.(int64))
 
 	query := "INSERT INTO distillation_data (user_id, prompt, inference_process, model_output) VALUES (?, ?, ?, ?)"
-	_, err := db.GetDB().Exec(query, data.UserID, data.Prompt, data.InferenceProcess, data.ModelOutput)
+	_, err := db.DB.Exec(query, data.UserID, data.Prompt, data.InferenceProcess, data.ModelOutput)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save data"})
 		return
