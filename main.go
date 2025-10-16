@@ -21,13 +21,17 @@ func main() {
 
 	r := gin.Default()
 
-	r.POST("/register", handlers.Register)
-	r.POST("/login", handlers.Login)
-
-	authRequired := r.Group("/")
-	authRequired.Use(middleware.AuthMiddleware())
+	api := r.Group("/api/v1")
 	{
-		authRequired.GET("/profile", handlers.GetProfile)
+		api.POST("/register", handlers.Register)
+		api.POST("/login", handlers.Login)
+
+		authRequired := api.Group("/")
+		authRequired.Use(middleware.AuthMiddleware())
+		{
+			authRequired.GET("/profile", handlers.GetProfile)
+			authRequired.POST("/distillation-data", handlers.UploadDistillationData)
+		}
 	}
 
 	r.Run()
