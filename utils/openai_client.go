@@ -40,7 +40,7 @@ func GetOpenAIPromptFission(prompt string) ([]string, error) {
 	formattedPrompt = strings.Replace(formattedPrompt, "{prompt_fission_count}", countStr, -1)
 
 	requestBody := OpenAIRequest{
-		Model: "gpt-3.5-turbo",
+		Model: config.Cfg.OpenAIModel,
 		Messages: []ChatMessage{
 			{
 				Role:    "user",

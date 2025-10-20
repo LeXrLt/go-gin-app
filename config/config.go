@@ -12,6 +12,7 @@ type Config struct {
 	PromptFissionCount    int    `mapstructure:"prompt_fission_count"`
 	OpenAIAPIUrl          string `mapstructure:"openai_api_url"`
 	OpenAIAPIKey          string `mapstructure:"openai_api_key"`
+	OpenAIModel           string `mapstructure:"openai_model"`
 	PromptFissionTemplate string `mapstructure:"prompt_fission_template"`
 }
 
