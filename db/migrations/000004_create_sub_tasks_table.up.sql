@@ -1,6 +1,6 @@
 CREATE TABLE `sub_tasks` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `task_id` bigint(20) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `task_id` int NOT NULL,
   `prompt` text NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
