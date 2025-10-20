@@ -8,8 +8,11 @@ type Config struct {
 	Database struct {
 		Source string `mapstructure:"source"`
 	} `mapstructure:"database"`
-	JWTSecret          string `mapstructure:"jwt_secret"`
-	PromptFissionCount int    `mapstructure:"prompt_fission_count"`
+	JWTSecret             string `mapstructure:"jwt_secret"`
+	PromptFissionCount    int    `mapstructure:"prompt_fission_count"`
+	OpenAIAPIUrl          string `mapstructure:"openai_api_url"`
+	OpenAIAPIKey          string `mapstructure:"openai_api_key"`
+	PromptFissionTemplate string `mapstructure:"prompt_fission_template"`
 }
 
 var Cfg *Config

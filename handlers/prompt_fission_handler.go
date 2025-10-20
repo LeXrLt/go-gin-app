@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"go-gin-app/config"
+	"go-gin-app/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -18,14 +18,10 @@ func PromptFission(c *gin.Context) {
 		return
 	}
 
-	count := config.Cfg.PromptFissionCount
-	if count <= 0 {
-		count = 50 // Default to 50 if not configured or invalid
-	}
-
-	fissionedPrompts := make([]string, 0, count)
-	for i := 0; i < count; i++ {
-		fissionedPrompts = append(fissionedPrompts, req.Prompt)
+	fissionedPrompts, err := utils.GetOpenAIPromptFission(req.Prompt)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"prompts": fissionedPrompts})

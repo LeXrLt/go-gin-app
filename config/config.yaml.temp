@@ -3,3 +3,6 @@ database:
 
 jwt_secret: "your_secret_key"
 prompt_fission_count: 50
+openai_api_url: "your_openai_api_url"
+openai_api_key: "your_openai_api_key"
+prompt_fission_template: "请根据以下提示词：'{prompt}'，裂变出 {prompt_fission_count} 个高度相关的新提示词："
