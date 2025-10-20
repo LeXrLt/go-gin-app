@@ -8,11 +8,11 @@ WORKDIR /app
 COPY . .
 
 # 下载依赖
-RUN go mod download
+RUN go mod tidy
 
 # 暴露端口
 EXPOSE 8080
 
 # 运行应用
-# CMD ["go", "run", "main.go"]
-CMD ["tail", "-f", "/dev/null"]
+CMD ["go", "run", "main.go"]
+# CMD ["tail", "-f", "/dev/null"]
