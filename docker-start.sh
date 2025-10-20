@@ -1,4 +1,5 @@
 docker run --name go-gin-app \
- -it \
+ --restart=unless-stopped -td \
+ -e GIN_MODE=release \
  -p 8080:8080 \
- -v $(pwd):/app go-gin-app bash
+ -v $(pwd):/app go-gin-app:latest

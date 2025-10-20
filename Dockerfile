@@ -8,6 +8,7 @@ WORKDIR /app
 COPY . .
 
 # 下载依赖
+RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
 RUN go mod tidy
 
 # 暴露端口
