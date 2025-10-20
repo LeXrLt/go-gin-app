@@ -32,6 +32,7 @@ func main() {
 			authRequired.GET("/profile", handlers.GetProfile)
 			authRequired.POST("/distillation-data", handlers.UploadDistillationData)
 			authRequired.POST("/prompt-fission", handlers.PromptFission)
+			authRequired.GET("/pending-tasks", handlers.GetPendingTasks)
 		}
 	}
 

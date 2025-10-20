@@ -14,6 +14,7 @@ type Config struct {
 	OpenAIAPIKey          string `mapstructure:"openai_api_key"`
 	OpenAIModel           string `mapstructure:"openai_model"`
 	PromptFissionTemplate string `mapstructure:"prompt_fission_template"`
+	TaskTTL               int    `mapstructure:"task_ttl"`
 }
 
 var Cfg *Config
