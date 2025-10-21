@@ -1,2 +1,3 @@
-ALTER TABLE distillation_data DROP CONSTRAINT IF EXISTS fk_task;
-ALTER TABLE distillation_data DROP COLUMN IF EXISTS task_id;
+ALTER TABLE `distillation_data`
+    DROP COLUMN `task_id`,
+    DROP INDEX `idx_task_id`;

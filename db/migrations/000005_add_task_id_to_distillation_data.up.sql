@@ -1,6 +1,3 @@
-ALTER TABLE distillation_data
-ADD COLUMN task_id INT NOT NULL;
-
-ALTER TABLE distillation_data
-ADD CONSTRAINT fk_task
-FOREIGN KEY (task_id) REFERENCES task(id);
+ALTER TABLE `distillation_data`
+    ADD COLUMN `task_id`  INT NOT NULL AFTER `user_id`,
+    ADD INDEX `idx_task_id` (`task_id`);
