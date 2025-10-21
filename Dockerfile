@@ -10,6 +10,7 @@ COPY . .
 # 下载依赖
 RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
 RUN go mod tidy
+RUN go install -tags 'mysql' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
 
 # 暴露端口
 EXPOSE 8080
