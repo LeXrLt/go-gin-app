@@ -5,6 +5,7 @@ import "time"
 type DistillationData struct {
 	ID               int       `json:"id"`
 	UserID           int       `json:"user_id"`
+	TaskID           int       `json:"task_id"`
 	Prompt           string    `json:"prompt"`
 	InferenceProcess string    `json:"inference_process"`
 	ModelOutput      string    `json:"model_output"`

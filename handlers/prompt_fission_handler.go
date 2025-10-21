@@ -35,11 +35,12 @@ func PromptFission(c *gin.Context) {
 	// Create parent task
 	task := models.Task{
 		UserID:    int64(userID.(int64)),
+		Prompt:    req.Prompt,
 		Status:    "pending",
 		ExpiresAt: time.Now().Add(24 * time.Hour),
 	}
-	taskQuery := "INSERT INTO tasks (user_id, status, expires_at) VALUES (?, ?, ?)"
-	result, err := db.DB.Exec(taskQuery, task.UserID, task.Status, task.ExpiresAt)
+	taskQuery := "INSERT INTO tasks (user_id, prompt, status, expires_at) VALUES (?, ?, ?, ?)"
+	result, err := db.DB.Exec(taskQuery, task.UserID, task.Prompt, task.Status, task.ExpiresAt)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create task"})
 		return
