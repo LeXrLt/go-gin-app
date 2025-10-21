@@ -15,7 +15,7 @@ func GetPendingTasks(c *gin.Context) {
 		return
 	}
 
-	query := "SELECT st.prompt FROM sub_tasks st JOIN tasks t ON st.task_id = t.id WHERE t.user_id = ? AND st.status = 'pending' AND t.expires_at > ?"
+	query := "SELECT st.id, st.prompt FROM sub_tasks st JOIN tasks t ON st.task_id = t.id WHERE t.user_id = ? AND st.status = 'pending' AND t.expires_at > ?"
 	rows, err := db.DB.Query(query, userID, time.Now())
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database error"})
@@ -23,15 +23,16 @@ func GetPendingTasks(c *gin.Context) {
 	}
 	defer rows.Close()
 
-	var prompts []string
+	var response []PromptFissionResponse
 	for rows.Next() {
+		var subTaskID int64
 		var prompt string
-		if err := rows.Scan(&prompt); err != nil {
+		if err := rows.Scan(&subTaskID, &prompt); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to scan row"})
 			return
 		}
-		prompts = append(prompts, prompt)
+		response = append(response, PromptFissionResponse{SubTaskID: subTaskID,Prompt: prompt})
 	}
 
-	c.JSON(http.StatusOK, gin.H{"prompts": prompts})
+	c.JSON(http.StatusOK, response)
 }
