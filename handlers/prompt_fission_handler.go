@@ -1,14 +1,13 @@
 package handlers
 
 import (
-	"go-gin-app/config"
 	"go-gin-app/db"
 	"go-gin-app/models"
 	"go-gin-app/utils"
 	"net/http"
 	"time"
 
-	"github.com.gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 type PromptFissionRequest struct {
@@ -35,9 +34,9 @@ func PromptFission(c *gin.Context) {
 
 	// Create parent task
 	task := models.Task{
-		UserID:    int64(userID.(float64)),
+		UserID:    int64(userID.(int64)),
 		Status:    "pending",
-		ExpiresAt: time.Now().Add(time.Hour * time.Duration(config.Cfg.TaskTTL)),
+		ExpiresAt: time.Now().Add(24 * time.Hour),
 	}
 	taskQuery := "INSERT INTO tasks (user_id, status, expires_at) VALUES (?, ?, ?)"
 	result, err := db.DB.Exec(taskQuery, task.UserID, task.Status, task.ExpiresAt)
