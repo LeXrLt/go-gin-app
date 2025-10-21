@@ -76,8 +76,8 @@ func UploadDistillationData(c *gin.Context) {
 	}
 
 	// Insert distillation data
-	insertQuery := "INSERT INTO distillation_data (user_id, prompt, inference_process, model_output) VALUES (?, ?, ?, ?)"
-	_, err = db.DB.Exec(insertQuery, userID, req.Prompt, req.InferenceProcess, req.ModelOutput)
+	insertQuery := "INSERT INTO distillation_data (user_id, task_id, prompt, inference_process, model_output) VALUES (?, ?, ?, ?, ?)"
+	_, err = db.DB.Exec(insertQuery, userID, subTask.TaskID, req.Prompt, req.InferenceProcess, req.ModelOutput)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save data"})
 		return
